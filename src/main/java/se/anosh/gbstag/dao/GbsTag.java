@@ -1,4 +1,4 @@
-package se.anosh.spctag.dao;
+package se.anosh.gbstag.dao;
 
 /* Domain class for GBS-files 
  * 

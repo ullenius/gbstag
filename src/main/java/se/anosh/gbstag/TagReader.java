@@ -1,4 +1,4 @@
-package se.anosh.spctag;
+package se.anosh.gbstag;
 import java.io.IOException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -7,11 +7,11 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import se.anosh.spctag.dao.GbsTag;
-import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.SpcFileImplementation;
-import se.anosh.spctag.service.SpcManager;
-import se.anosh.spctag.service.GenericService;
+import se.anosh.gbstag.dao.GbsTag;
+import se.anosh.gbstag.dao.Id666;
+import se.anosh.gbstag.dao.SpcFileImplementation;
+import se.anosh.gbstag.service.GenericService;
+import se.anosh.gbstag.service.SpcManager;
 /**
  *
  * SPC tag 0.1

@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.GbsDao;
-import se.anosh.spctag.dao.SpcFileImplementation;
+import se.anosh.gbstag.dao.GbsDao;
+import se.anosh.gbstag.dao.Id666;
+import se.anosh.gbstag.dao.SpcFileImplementation;
 
 public class TestModelWithData {
 	

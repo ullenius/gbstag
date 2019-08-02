@@ -1,12 +1,12 @@
-package se.anosh.spctag.service;
+package se.anosh.gbstag.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-import se.anosh.spctag.dao.GbsTag;
-import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.GbsDao;
+import se.anosh.gbstag.dao.GbsDao;
+import se.anosh.gbstag.dao.GbsTag;
+import se.anosh.gbstag.dao.Id666;
 
 public class SpcManager implements GenericService<GbsTag> {
 	

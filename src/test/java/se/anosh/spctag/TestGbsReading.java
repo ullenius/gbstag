@@ -7,10 +7,10 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import se.anosh.spctag.dao.GbsTag;
-import se.anosh.spctag.dao.GbsFileImplementation;
-import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.SpcFileImplementation;
+import se.anosh.gbstag.dao.GbsFileImplementation;
+import se.anosh.gbstag.dao.GbsTag;
+import se.anosh.gbstag.dao.Id666;
+import se.anosh.gbstag.dao.SpcFileImplementation;
 
 public class TestGbsReading {
 

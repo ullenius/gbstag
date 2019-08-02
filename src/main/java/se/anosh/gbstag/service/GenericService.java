@@ -1,9 +1,9 @@
-package se.anosh.spctag.service;
+package se.anosh.gbstag.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import se.anosh.spctag.dao.Id666;
+import se.anosh.gbstag.dao.Id666;
 
 /**
  * 

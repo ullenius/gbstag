@@ -1,4 +1,4 @@
-package se.anosh.spctag.dao;
+package se.anosh.gbstag.dao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
