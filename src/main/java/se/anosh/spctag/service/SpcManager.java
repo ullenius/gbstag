@@ -8,7 +8,7 @@ import se.anosh.spctag.dao.GbsTag;
 import se.anosh.spctag.dao.Id666;
 import se.anosh.spctag.dao.GbsDao;
 
-public class SpcManager implements SpcService<GbsTag> {
+public class SpcManager implements GenericService<GbsTag> {
 	
 	private GbsDao dao;
 	
