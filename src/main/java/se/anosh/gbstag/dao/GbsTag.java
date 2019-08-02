@@ -1,10 +1,19 @@
 package se.anosh.gbstag.dao;
 
+import java.util.Comparator;
+
 /* Domain class for GBS-files 
  * 
  */
 
-public class GbsTag {
+public class GbsTag implements Comparable<GbsTag> {
+	
+	// Thanks to Lukasz Wiktor @ stack overflow (2014)
+    private static final Comparator<String> nullSafeStringComparator = Comparator.nullsFirst(String::compareToIgnoreCase);
+    private static final Comparator<GbsTag> gbsComparator = Comparator
+            .comparing(GbsTag::getTitle, nullSafeStringComparator)
+            .thenComparing(GbsTag::getAuthor, nullSafeStringComparator)
+            .thenComparing(GbsTag::getCopyright, nullSafeStringComparator);
 	
 	private String header;
 	private String author;
@@ -82,6 +91,10 @@ public class GbsTag {
 				+ copyright + "]";
 	}
 	
+	@Override
+	public int compareTo(GbsTag arg0) {
+		
+		return gbsComparator.compare(this, arg0);
+	}
 	
-
 }

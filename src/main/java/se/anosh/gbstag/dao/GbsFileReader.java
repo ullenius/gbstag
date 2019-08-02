@@ -39,8 +39,6 @@ public class GbsFileReader {
 		raf = new RandomAccessFile(file.toString(),"r");
 		tags = new GbsTag();
 		
-		System.out.println("Printing filename " + filename);
-		
 		readAndSetAllFields();
 
 		raf.close();
