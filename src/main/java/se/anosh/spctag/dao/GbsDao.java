@@ -10,9 +10,9 @@ import java.io.IOException;
  * @author Anosh D. Ullenius <anosh@anosh.se>
  *
  */
-public interface SpcDao {
+public interface GbsDao<T> {
 	
-	public Id666 read() throws FileNotFoundException, IOException;
+	public T read() throws FileNotFoundException, IOException;
 	public void update(String song); // example
 	public void remove(); // remove all fields
 

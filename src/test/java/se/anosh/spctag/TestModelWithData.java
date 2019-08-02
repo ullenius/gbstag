@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.SpcDao;
+import se.anosh.spctag.dao.GbsDao;
 import se.anosh.spctag.dao.SpcFileImplementation;
 
 public class TestModelWithData {
@@ -123,7 +123,7 @@ public class TestModelWithData {
     @Test
     public void testComparableWithNullValues() throws IOException {
         
-        SpcDao otherFile = new SpcFileImplementation("spc/binary.spc"); //accessing using the interface this time
+        GbsDao otherFile = new SpcFileImplementation("spc/binary.spc"); //accessing using the interface this time
         Id666 other = otherFile.read();
         
         other.setGameTitle(null);

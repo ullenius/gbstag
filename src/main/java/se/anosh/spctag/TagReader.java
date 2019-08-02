@@ -7,6 +7,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import se.anosh.spctag.dao.GbsTag;
 import se.anosh.spctag.dao.Id666;
 import se.anosh.spctag.dao.SpcFileImplementation;
 import se.anosh.spctag.service.SpcManager;
@@ -15,24 +16,19 @@ import se.anosh.spctag.service.SpcService;
  *
  * SPC tag 0.1
  * 
- * Java command-line tool for reading the ID666 tag from a SNES SPC file.
+ * Java command-line tool for reading the tags from Game Boy Sound (gbs) files.
  * 
- * SPC-files are sound files containing ripped chiptune music 
- * from Super Nintendo and Super Famicom games. 
- * 
- * They are named after the Sony SPC-700 sound chip created by Ken Kutaragi 
- * (who later became the father of the Playstation).
- * 
+ * GBS-files are sound files containing ripped chiptune music 
+ * from Gameboy and Gameboy Colour
  * 
  * @author Anosh D. Ullenius <anosh@anosh.se>
- * code written in February 2019
+ * code written in August 2019. Based on spctool
  */
 public class TagReader {
     
-    private static final String VERSION ="spctag version 0.1";
+    private static final String VERSION ="gbstag version 0.1";
     private static final String ABOUT = "code by A. Ullenius 2019";
     private static final String LICENCE = "Licence: Gnu General Public License - version 3.0 only";
-    private static final String TRIBUTE = "spctag is dedicated to my favourite OC remixer: Chris 'Avien' Powell (1986-2004). RIP";
     
     public static void main(String[] args) {
         
@@ -55,7 +51,7 @@ public class TagReader {
             TagReader demo = new TagReader();
             demo.go(cmd);
         } catch (ParseException ex) {
-            formatter.printHelp("spctag <filename>", options);
+            formatter.printHelp("gbs <filename>", options);
             System.exit(0);
         }
         
@@ -66,7 +62,6 @@ public class TagReader {
         System.out.println(VERSION);
         System.out.println(ABOUT);
         System.out.println(LICENCE);
-        System.out.println(TRIBUTE);
         System.exit(0);
     }
     
@@ -77,24 +72,16 @@ public class TagReader {
         for (String file : fileNames) {
             try {
             	
-            	SpcService service = new SpcManager(new SpcFileImplementation(file));
-            	Id666 myFile = service.read();
+            	SpcService<GbsTag> service = new SpcManager(new SpcFileImplementation(file));
+            	GbsTag myFile = service.read();
             	
             	if (cmd.hasOption("v")) { // verbose output
             		System.out.println("File header: " + myFile.getHeader());
-
-            		String format = myFile.isBinaryTagFormat() ? "Binary" : "Text"; // ternary operator
-            		System.out.println("Tag format: " + format);
             	}
-                System.out.println("Artist: " + myFile.getArtist()); // composer
-                System.out.println("Song title: " + myFile.getSongTitle());
+                System.out.println("Artist: " + myFile.getAuthor()); // composer
+                System.out.println("Title: " + myFile.getTitle());
+                System.out.println("Copyright: " + myFile.getCopyright());
                 
-                System.out.println("Game title: " + myFile.getGameTitle());
-                System.out.println("Name of dumper: " + myFile.getNameOfDumper());
-                System.out.println("Comments: " + myFile.getComments());
-                
-                System.out.println("Date SPC was dumped:" + myFile.getDateDumpWasCreated());
-                System.out.println("Emulator used to dump SPC: " + myFile.getEmulatorUsedToCreateDump().getName());
                 
             } catch (IOException ex) {
                 System.out.println("I/O error");

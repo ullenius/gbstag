@@ -4,20 +4,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+import se.anosh.spctag.dao.GbsTag;
 import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.SpcDao;
+import se.anosh.spctag.dao.GbsDao;
 
-public class SpcManager implements SpcService {
+public class SpcManager implements SpcService<GbsTag> {
 	
-	private SpcDao dao;
+	private GbsDao dao;
 	
 	// dependency injection
-	public SpcManager(SpcDao dao) {
+	public SpcManager(GbsDao dao) {
 		this.dao = Objects.requireNonNull(dao);
 	}
 
 	@Override
-	public Id666 read() throws FileNotFoundException, IOException {
+	public GbsTag read() throws FileNotFoundException, IOException {
 		
 		return dao.read();
 	}

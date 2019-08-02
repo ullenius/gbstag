@@ -12,9 +12,9 @@ import se.anosh.spctag.dao.Id666;
  * @author Anosh D. Ullenius <anosh@anosh.se>
  *
  */
-public interface SpcService {
+public interface SpcService<T> {
 	
-	public Id666 read() throws FileNotFoundException, IOException;
+	public T read() throws FileNotFoundException, IOException;
 	public void deleteSpcTags();
 	public void update(String song);
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Test;
 
 import se.anosh.spctag.dao.Id666;
-import se.anosh.spctag.dao.SpcDao;
+import se.anosh.spctag.dao.GbsDao;
 import se.anosh.spctag.dao.SpcFileImplementation;
 
 import static org.junit.Assert.*;
