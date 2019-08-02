@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author Anosh D. Ullenius <anosh@anosh.se>
  *
  */
-public interface GbsDao<T> {
+public interface GenericDao<T> {
 	
 	public T read() throws FileNotFoundException, IOException;
 	public void update(String song); // example

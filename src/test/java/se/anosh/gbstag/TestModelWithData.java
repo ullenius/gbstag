@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import se.anosh.gbstag.dao.GbsDao;
+import se.anosh.gbstag.dao.GenericDao;
 import se.anosh.gbstag.dao.Id666;
 import se.anosh.gbstag.dao.SpcFileImplementation;
 
@@ -123,7 +123,7 @@ public class TestModelWithData {
     @Test
     public void testComparableWithNullValues() throws IOException {
         
-        GbsDao otherFile = new SpcFileImplementation("spc/binary.spc"); //accessing using the interface this time
+        GenericDao otherFile = new SpcFileImplementation("spc/binary.spc"); //accessing using the interface this time
         Id666 other = otherFile.read();
         
         other.setGameTitle(null);

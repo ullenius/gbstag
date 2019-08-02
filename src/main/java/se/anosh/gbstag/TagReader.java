@@ -7,6 +7,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.dao.GbsTag;
 import se.anosh.gbstag.dao.Id666;
 import se.anosh.gbstag.dao.SpcFileImplementation;
@@ -72,7 +73,7 @@ public class TagReader {
         for (String file : fileNames) {
             try {
             	
-            	GenericService<GbsTag> service = new GbsManager(new SpcFileImplementation(file));
+            	GenericService<GbsTag> service = new GbsManager(new GbsFileImplementation(file));
             	GbsTag myFile = service.read();
             	
             	if (cmd.hasOption("v")) { // verbose output

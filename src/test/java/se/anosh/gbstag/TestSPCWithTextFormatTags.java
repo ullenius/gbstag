@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-import se.anosh.gbstag.dao.GbsDao;
+import se.anosh.gbstag.dao.GenericDao;
 import se.anosh.gbstag.dao.Id666;
 import se.anosh.gbstag.dao.SpcFileImplementation;
 

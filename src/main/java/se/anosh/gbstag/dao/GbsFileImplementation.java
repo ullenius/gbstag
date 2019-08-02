@@ -3,7 +3,7 @@ package se.anosh.gbstag.dao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class GbsFileImplementation {
+public class GbsFileImplementation implements GenericDao<GbsTag> {
 	
 	private GbsFileReader gbsFile;
 
