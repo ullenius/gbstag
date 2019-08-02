@@ -178,7 +178,6 @@ public class SpcFileReader {
 	}
 
 	private boolean isValidSPCFile() throws IOException {
-		raf.seek(0);
 		final String fileHeader = readStuff(HEADER_OFFSET, HEADER_LENGTH)
 				.trim()
 				.substring(0, CORRECT_HEADER.length());
@@ -228,18 +227,15 @@ public class SpcFileReader {
 			return true;
 		}
 	}
-
+	
 	private String readStuff(int offset, int length) throws IOException {
-		raf.seek(offset);
-		byte[] bytes = new byte[length];
-		raf.read(bytes);
-		return new String(bytes, "ISO-8859-1");
+		
+		return BinaryIO.readStuff(raf,offset,length);
 	}
 
 	private byte readByte(int offset) throws IOException {
-		raf.seek(offset);
-		byte result = raf.readByte();
-		return result;
+		
+		return BinaryIO.readByte(raf,offset);
 	}
 
 
