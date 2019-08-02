@@ -4,7 +4,7 @@ package se.anosh.spctag.dao;
  * 
  */
 
-public class GameBoySoundFile {
+public class GbsTag {
 	
 	private String header;
 	private String author;
@@ -53,7 +53,7 @@ public class GameBoySoundFile {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameBoySoundFile other = (GameBoySoundFile) obj;
+		GbsTag other = (GbsTag) obj;
 		if (author == null) {
 			if (other.author != null)
 				return false;
@@ -75,6 +75,11 @@ public class GameBoySoundFile {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "GameBoySoundFile [header=" + header + ", author=" + author + ", title=" + title + ", copyright="
+				+ copyright + "]";
 	}
 	
 	

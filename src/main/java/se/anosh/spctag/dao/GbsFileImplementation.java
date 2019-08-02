@@ -3,7 +3,7 @@ package se.anosh.spctag.dao;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class GbsFileImplementation implements SpcDao {
+public class GbsFileImplementation {
 	
 	private GbsFileReader gbsFile;
 
@@ -13,20 +13,17 @@ public class GbsFileImplementation implements SpcDao {
 	}
 	
 	
-	@Override
-	public Id666 read() throws FileNotFoundException, IOException {
+	public GbsTag read() throws FileNotFoundException, IOException {
 		
-		return gbsFile.getId666();
+		return gbsFile.getTags();
 		
 	}
 
-	@Override
 	public void update(String song) {
 		throw new UnsupportedOperationException("not yet implemented");
 
 	}
 
-	@Override
 	public void remove() {
 		throw new UnsupportedOperationException("not yet implemented");
 

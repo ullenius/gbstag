@@ -22,12 +22,12 @@ public class GbsFileReader {
 	public static final int COPYRIGHT_OFFSET = 0x50;
 	public static final int COPYRIGHT_LENGTH = 32;
 	
-	private GameBoySoundFile tags;
+	private GbsTag tags;
 	private Path file;
 	private RandomAccessFile raf;
 
 
-	public Id666 getId666() {
+	public GbsTag getTags() {
 		Objects.requireNonNull(tags, "tags cannot be null!");
 		return this.tags;
 	}
@@ -37,6 +37,10 @@ public class GbsFileReader {
 
 		file = Paths.get(filename);
 		raf = new RandomAccessFile(file.toString(),"r");
+		tags = new GbsTag();
+		
+		System.out.println("Printing filename " + filename);
+		
 		readAndSetAllFields();
 
 		raf.close();
@@ -66,6 +70,8 @@ public class GbsFileReader {
 	private void readCopyright() throws IOException {
 		tags.setCopyright(readStuff(COPYRIGHT_OFFSET, COPYRIGHT_LENGTH).trim());
 	}
+	
+	
 	
 	
 	private String readStuff(int offset, int length) throws IOException {
