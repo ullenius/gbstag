@@ -8,12 +8,12 @@ import se.anosh.gbstag.dao.GbsDao;
 import se.anosh.gbstag.dao.GbsTag;
 import se.anosh.gbstag.dao.Id666;
 
-public class SpcManager implements GenericService<GbsTag> {
+public class GbsManager implements GenericService<GbsTag> {
 	
-	private GbsDao dao;
+	private GbsDao<GbsTag> dao;
 	
 	// dependency injection
-	public SpcManager(GbsDao dao) {
+	public GbsManager(GbsDao<GbsTag> dao) {
 		this.dao = Objects.requireNonNull(dao);
 	}
 

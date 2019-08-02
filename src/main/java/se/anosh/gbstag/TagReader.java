@@ -11,7 +11,7 @@ import se.anosh.gbstag.dao.GbsTag;
 import se.anosh.gbstag.dao.Id666;
 import se.anosh.gbstag.dao.SpcFileImplementation;
 import se.anosh.gbstag.service.GenericService;
-import se.anosh.gbstag.service.SpcManager;
+import se.anosh.gbstag.service.GbsManager;
 /**
  *
  * SPC tag 0.1
@@ -72,7 +72,7 @@ public class TagReader {
         for (String file : fileNames) {
             try {
             	
-            	GenericService<GbsTag> service = new SpcManager(new SpcFileImplementation(file));
+            	GenericService<GbsTag> service = new GbsManager(new SpcFileImplementation(file));
             	GbsTag myFile = service.read();
             	
             	if (cmd.hasOption("v")) { // verbose output
