@@ -78,7 +78,7 @@ public class TagReader {
             	if (cmd.hasOption("v")) { // verbose output
             		System.out.println("File header: " + myFile.getHeader());
             	}
-                System.out.println("Artist: " + myFile.getAuthor()); // composer
+                System.out.println("Artist(s): " + myFile.getAuthor()); // composers, named 'Author' in the GBS-spec
                 System.out.println("Title: " + myFile.getTitle());
                 System.out.println("Copyright: " + myFile.getCopyright());
                 
