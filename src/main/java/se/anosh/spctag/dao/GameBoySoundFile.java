@@ -4,7 +4,7 @@ package se.anosh.spctag.dao;
  * 
  */
 
-public class GameBoySoundFile extends Id666 {
+public class GameBoySoundFile {
 	
 	private String header;
 	private String author;
