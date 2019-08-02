@@ -1,7 +1,5 @@
 package se.anosh.gbstag;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 
 import org.junit.Before;
@@ -9,8 +7,6 @@ import org.junit.Test;
 
 import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.dao.GbsTag;
-import se.anosh.gbstag.dao.Id666;
-import se.anosh.gbstag.dao.SpcFileImplementation;
 
 public class TestGbsReading {
 

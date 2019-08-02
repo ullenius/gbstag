@@ -13,6 +13,7 @@ import se.anosh.gbstag.dao.GenericDao;
 import se.anosh.gbstag.dao.Id666;
 import se.anosh.gbstag.dao.SpcFileImplementation;
 
+@Deprecated
 public class TestModelWithData {
 	
 	

@@ -3,8 +3,6 @@ package se.anosh.gbstag.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import se.anosh.gbstag.dao.Id666;
-
 /**
  * 
  * Service layer

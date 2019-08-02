@@ -72,8 +72,6 @@ public class GbsFileReader {
 	}
 	
 	
-	
-	
 	private String readStuff(int offset, int length) throws IOException {
 		
 		return BinaryIO.readStuff(raf,offset,length);

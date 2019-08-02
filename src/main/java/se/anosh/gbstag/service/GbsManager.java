@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-import se.anosh.gbstag.dao.GenericDao;
 import se.anosh.gbstag.dao.GbsTag;
-import se.anosh.gbstag.dao.Id666;
+import se.anosh.gbstag.dao.GenericDao;
 
 public class GbsManager implements GenericService<GbsTag> {
 	

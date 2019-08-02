@@ -1,5 +1,6 @@
 package se.anosh.gbstag;
 import java.io.IOException;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -9,10 +10,8 @@ import org.apache.commons.cli.ParseException;
 
 import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.dao.GbsTag;
-import se.anosh.gbstag.dao.Id666;
-import se.anosh.gbstag.dao.SpcFileImplementation;
-import se.anosh.gbstag.service.GenericService;
 import se.anosh.gbstag.service.GbsManager;
+import se.anosh.gbstag.service.GenericService;
 /**
  *
  * SPC tag 0.1

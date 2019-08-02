@@ -16,6 +16,7 @@ import org.junit.Before;
  *
  * @author Anosh D. Ullenius <anosh@anosh.se>
  */
+@Deprecated
 public class TestSPCWithTextFormatTags {
     
     public TestSPCWithTextFormatTags() {
