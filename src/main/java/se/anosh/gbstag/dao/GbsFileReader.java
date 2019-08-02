@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import se.anosh.gbstag.util.BinaryIO;
+
 public class GbsFileReader {
 	
 	// Includes identifier string and version number
