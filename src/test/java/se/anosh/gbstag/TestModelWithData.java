@@ -1,4 +1,4 @@
-package se.anosh.spctag;
+package se.anosh.gbstag;
 
 import static org.junit.Assert.*;
 

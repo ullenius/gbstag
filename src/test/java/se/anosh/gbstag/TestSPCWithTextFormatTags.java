@@ -1,4 +1,4 @@
-package se.anosh.spctag;
+package se.anosh.gbstag;
 
 import java.io.IOException;
 import java.util.ArrayList;
