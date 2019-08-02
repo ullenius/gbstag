@@ -1,4 +1,4 @@
-package se.anosh.gbstag.dao;
+package se.anosh.gbstag.domain;
 
 import java.util.Comparator;
 

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import se.anosh.gbstag.dao.GbsFileImplementation;
-import se.anosh.gbstag.dao.GbsTag;
+import se.anosh.gbstag.domain.GbsTag;
 
 public class TestGbsReading {
 

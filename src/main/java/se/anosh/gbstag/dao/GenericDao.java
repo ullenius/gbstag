@@ -13,7 +13,7 @@ import java.io.IOException;
 public interface GenericDao<T> {
 	
 	public T read() throws FileNotFoundException, IOException;
-	public void update(String song); // example
+	public void update(String song); //TODO change parameter name
 	public void remove(); // remove all fields
 
 }

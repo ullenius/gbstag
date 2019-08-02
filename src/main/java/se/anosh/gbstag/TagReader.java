@@ -9,7 +9,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import se.anosh.gbstag.dao.GbsFileImplementation;
-import se.anosh.gbstag.dao.GbsTag;
+import se.anosh.gbstag.domain.GbsTag;
 import se.anosh.gbstag.service.GbsManager;
 import se.anosh.gbstag.service.GenericService;
 /**
