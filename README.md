@@ -18,9 +18,11 @@ For example:
 ```sh
 $ java -jar gbstag "/warez/gbs/dkland2.gbs"
 
-Artist: Grant Kirkhope
-Title: Donkey Kong Land 2
-Copyright: 1996 Rare, Nintendo
+Title		 : Donkey Kong Land 2
+Artist(s)	 : Grant Kirkhope
+Copyright	 : 1996 Rare, Nintendo
+First Songs	 : 1
+Total Songs	 : 28
 ```
 
 ## Features
