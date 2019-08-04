@@ -20,6 +20,21 @@ public class GbsTag implements Comparable<GbsTag> {
 	private String title;
 	private String copyright;
 	
+	private short numberOfSongs;
+	private byte firstSong;
+	
+	public short getNumberOfSongs() {
+		return numberOfSongs;
+	}
+	public void setNumberOfSongs(short numberOfSongs) {
+		this.numberOfSongs = numberOfSongs;
+	}
+	public byte getFirstSong() {
+		return firstSong;
+	}
+	public void setFirstSong(byte firstSong) {
+		this.firstSong = firstSong;
+	}
 	public String getHeader() {
 		return header;
 	}

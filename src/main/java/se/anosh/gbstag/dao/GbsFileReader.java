@@ -25,6 +25,11 @@ public class GbsFileReader {
 	public static final int COPYRIGHT_OFFSET = 0x50;
 	public static final int COPYRIGHT_LENGTH = 32;
 	
+	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
+	public static final byte FIRST_SONG = 0x5;
+	
+	
+	
 	private GbsTag tags;
 	private Path file;
 	private RandomAccessFile raf;
