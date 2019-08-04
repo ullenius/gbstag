@@ -20,9 +20,16 @@ public class GbsTag implements Comparable<GbsTag> {
 	private String title;
 	private String copyright;
 	
-	private short numberOfSongs;
+	private short numberOfSongs; //1-255 but because of Java's unsigned problem byte is not enough
 	private byte firstSong;
+	private byte versionNumber;
 	
+	public byte getVersionNumber() {
+		return versionNumber;
+	}
+	public void setVersionNumber(byte versionNumber) {
+		this.versionNumber = versionNumber;
+	}
 	public short getNumberOfSongs() {
 		return numberOfSongs;
 	}
@@ -100,14 +107,14 @@ public class GbsTag implements Comparable<GbsTag> {
 			return false;
 		return true;
 	}
-
-	
 	
 	@Override
 	public String toString() {
-		return "GbsTag [header=" + header + ", author=" + author + ", title=" + title + ", copyright=" + copyright
-				+ ", numberOfSongs=" + numberOfSongs + ", firstSong=" + firstSong + "]";
+		return "GbsTag [identifier=" + header + ", versionNumber=" + versionNumber + ", numberOfSongs=" + numberOfSongs
+				+ ", firstSong=" + firstSong + ", title=" + title + ", author=" + author + ", copyright=" + copyright
+				+ "]";
 	}
+	
 	@Override
 	public int compareTo(GbsTag arg0) {
 		

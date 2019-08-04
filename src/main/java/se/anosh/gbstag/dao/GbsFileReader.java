@@ -25,6 +25,8 @@ public class GbsFileReader {
 	public static final int COPYRIGHT_OFFSET = 0x50;
 	public static final int COPYRIGHT_LENGTH = 32;
 	
+
+	public static final byte VERSION_NUMBER_OFFSET = 0x3;
 	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
 	public static final byte FIRST_SONG_OFFSET = 0x5;
 	
@@ -51,14 +53,20 @@ public class GbsFileReader {
 	}
 
 	private void readAndSetAllFields() throws FileNotFoundException, IOException {
-
+		// immutable tags
 		readHeader();
+		readVersionNumber();
+		readNumberOfSongs();
+		readFirstSong();
+		
+		// mutable tags
 		readTitle();
 		readAuthor();
 		readCopyright();
-		
-		readNumberOfSongs();
-		readFirstSong();
+	}
+	
+	private void readVersionNumber() throws IOException {
+		tags.setVersionNumber(readByte(VERSION_NUMBER_OFFSET));
 	}
 	
 	private void readNumberOfSongs() throws IOException {
