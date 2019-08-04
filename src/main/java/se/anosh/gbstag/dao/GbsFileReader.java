@@ -13,8 +13,8 @@ import se.anosh.gbstag.util.BinaryIO;
 public class GbsFileReader {
 	
 	// Includes identifier string and version number
-	public static final int HEADER_OFFSET = 0;
-	public static final int HEADER_LENGTH = 0x4;
+	public static final int IDENTIFIER_OFFSET = 0;
+	public static final int IDENTIFIER_LENGTH = 0x3;
 
 	public static final int TITLE_OFFSET = 0x10;
 	public static final int TITLE_LENGTH = 32;
@@ -26,9 +26,7 @@ public class GbsFileReader {
 	public static final int COPYRIGHT_LENGTH = 32;
 	
 	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
-	public static final byte FIRST_SONG = 0x5;
-	
-	
+	public static final byte FIRST_SONG_OFFSET = 0x5;
 	
 	private GbsTag tags;
 	private Path file;
@@ -59,10 +57,21 @@ public class GbsFileReader {
 		readAuthor();
 		readCopyright();
 		
+		readNumberOfSongs();
+		readFirstSong();
 	}
 	
+	private void readNumberOfSongs() throws IOException {
+		tags.setNumberOfSongs(readByte(NUMBER_OF_SONGS_OFFSET));
+	}
+	
+	private void readFirstSong() throws IOException {
+		tags.setFirstSong(readByte(FIRST_SONG_OFFSET));
+	}
+	
+	
 	private void readHeader() throws IOException {
-		tags.setHeader(readStuff(HEADER_OFFSET, HEADER_LENGTH).trim()); // removes NULL character
+		tags.setHeader(readStuff(IDENTIFIER_OFFSET, IDENTIFIER_LENGTH).trim()); // removes NULL character
 	}
 	
 	private void readTitle() throws IOException {
@@ -81,6 +90,10 @@ public class GbsFileReader {
 	private String readStuff(int offset, int length) throws IOException {
 		
 		return BinaryIO.readStuff(raf,offset,length);
+	}
+	
+	private byte readByte(int offset) throws IOException {
+		return BinaryIO.readByte(raf,offset);
 	}
 
 }

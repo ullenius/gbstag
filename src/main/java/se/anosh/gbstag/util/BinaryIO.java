@@ -21,5 +21,11 @@ public final class BinaryIO {
 		raf.read(bytes);
 		return new String(bytes, "ISO-8859-1");
 	}
+	
+	public static byte readByte(final RandomAccessFile raf, int offset) throws IOException {
+		raf.seek(offset);
+		byte result = raf.readByte();
+		return result;
+	}
 
 }

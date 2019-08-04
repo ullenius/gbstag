@@ -100,12 +100,14 @@ public class GbsTag implements Comparable<GbsTag> {
 			return false;
 		return true;
 	}
+
+	
+	
 	@Override
 	public String toString() {
-		return "GameBoySoundFile [header=" + header + ", author=" + author + ", title=" + title + ", copyright="
-				+ copyright + "]";
+		return "GbsTag [header=" + header + ", author=" + author + ", title=" + title + ", copyright=" + copyright
+				+ ", numberOfSongs=" + numberOfSongs + ", firstSong=" + firstSong + "]";
 	}
-	
 	@Override
 	public int compareTo(GbsTag arg0) {
 		
