@@ -20,9 +20,9 @@ public class GbsTag implements Comparable<GbsTag> {
 	private String title;
 	private String copyright;
 	
-	private short numberOfSongs; //1-255 but because of Java's unsigned problem byte is not enough
-	private byte firstSong;
-	private byte versionNumber;
+	private int numberOfSongs; //1-255 (1 byte) but since Java doesn't support unsigned values int is used
+	private int firstSong;
+	private byte versionNumber;  // doesn't matter
 	
 	public byte getVersionNumber() {
 		return versionNumber;
@@ -30,17 +30,17 @@ public class GbsTag implements Comparable<GbsTag> {
 	public void setVersionNumber(byte versionNumber) {
 		this.versionNumber = versionNumber;
 	}
-	public short getNumberOfSongs() {
+	public int getNumberOfSongs() {
 		return numberOfSongs;
 	}
-	public void setNumberOfSongs(short numberOfSongs) {
-		this.numberOfSongs = numberOfSongs;
+	public void setNumberOfSongs(int numberOfSongs) {
+		this.numberOfSongs = numberOfSongs & 0xFF; // leaves only the least significant byte
 	}
-	public byte getFirstSong() {
+	public int getFirstSong() {
 		return firstSong;
 	}
-	public void setFirstSong(byte firstSong) {
-		this.firstSong = firstSong;
+	public void setFirstSong(int firstSong) {
+		this.firstSong = firstSong & 0xFF;
 	}
 	public String getHeader() {
 		return header;
