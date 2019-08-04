@@ -76,11 +76,15 @@ public class TagReader {
             	GbsTag myFile = service.read();
             	
             	if (cmd.hasOption("v")) { // verbose output
-            		System.out.println("File header: " + myFile.getHeader());
+            		System.out.println("Identifier\t : " + myFile.getHeader());
+            		System.out.println("Version Number\t : " + myFile.getVersionNumber());
+            		System.out.println("Total Songs\t : " + myFile.getNumberOfSongs());
+            		System.out.println("Total Songs\t : " + myFile.getFirstSong());
+            		
             	}
-                System.out.println("Artist(s): " + myFile.getAuthor()); // composers, named 'Author' in the GBS-spec
-                System.out.println("Title: " + myFile.getTitle());
-                System.out.println("Copyright: " + myFile.getCopyright());
+            	System.out.println("Title\t\t : " + myFile.getTitle());
+                System.out.println("Artist(s)\t : " + myFile.getAuthor()); // composers, named 'Author' in the GBS-spec
+                System.out.println("Copyright\t : " + myFile.getCopyright());
                 
                 
             } catch (IOException ex) {
