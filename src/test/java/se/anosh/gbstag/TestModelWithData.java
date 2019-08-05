@@ -125,6 +125,21 @@ public class TestModelWithData {
         assertNotNull(myList.get(1).getCopyright());
     }
     
+    @Test
+    public void testFileWithValidHeader() {
+        
+        // first 3 bytes of string should equal "GBS"
+        final String headerWithoutVersionNumber = tag.getHeader();
+        assertEquals("GBS",headerWithoutVersionNumber); // case sensitive
+    }
+    
+    @Test(expected=IOException.class)
+    public void testFileWithInvalidHeader() throws IOException {
+        // tests a file that is not SPC
+        gbsFile = new GbsFileImplementation("gbs/randomBytes.gbs"); // will throw exception
+        
+    }
+    
 	
 
 }
