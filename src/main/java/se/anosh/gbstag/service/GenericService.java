@@ -13,7 +13,7 @@ import java.io.IOException;
 public interface GenericService<T> {
 	
 	public T read() throws FileNotFoundException, IOException;
-	public void deleteSpcTags();
+	public void delete();
 	public void update(String song);
 	
 

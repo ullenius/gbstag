@@ -23,7 +23,7 @@ public class GbsManager implements GenericService<GbsTag> {
 	}
 
 	@Override
-	public void deleteSpcTags() {
+	public void delete() {
 		dao.remove();
 	}
 
