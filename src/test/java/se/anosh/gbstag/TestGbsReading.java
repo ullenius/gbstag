@@ -8,13 +8,9 @@ import org.junit.Test;
 import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.domain.GbsTag;
 
+@Deprecated
 public class TestGbsReading {
 
-	@Test
-	public void test() {
-//		fail("Not yet implemented");
-	}
-	
 	    public TestGbsReading() {
 			super();
 		}

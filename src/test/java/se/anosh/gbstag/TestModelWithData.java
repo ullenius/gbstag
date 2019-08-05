@@ -135,7 +135,7 @@ public class TestModelWithData {
     
     @Test(expected=IOException.class)
     public void testFileWithInvalidHeader() throws IOException {
-        // tests a file that is not SPC
+        // tests a file that is not a GBS
         gbsFile = new GbsFileImplementation("gbs/randomBytes.gbs"); // will throw exception
         
     }

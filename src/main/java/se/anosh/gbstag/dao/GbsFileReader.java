@@ -30,6 +30,8 @@ public class GbsFileReader {
 	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
 	public static final byte FIRST_SONG_OFFSET = 0x5;
 	
+	private static final String CORRECT_HEADER = "GBS";
+	
 	private GbsTag tags;
 	private Path file;
 	private RandomAccessFile raf;
@@ -47,14 +49,22 @@ public class GbsFileReader {
 		raf = new RandomAccessFile(file.toString(),"r");
 		tags = new GbsTag();
 		
+		if (!isValidGbsFile())
+			throw new IOException("File is missing correct GBS-header. Exiting");
+		
 		readAndSetAllFields();
 
 		raf.close();
 	}
-
+	
+	private boolean isValidGbsFile() throws IOException {
+		readHeader();
+		return (tags.getHeader().equals(CORRECT_HEADER));
+	}
+	
 	private void readAndSetAllFields() throws FileNotFoundException, IOException {
 		// immutable tags
-		readHeader();
+		//readHeader(); // already set by isValidGbsFile
 		readVersionNumber();
 		readNumberOfSongs();
 		readFirstSong();
