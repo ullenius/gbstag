@@ -66,13 +66,18 @@ public class GbsTag implements Comparable<GbsTag> {
 	public void setCopyright(String copyright) {
 		this.copyright = copyright;
 	}
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((copyright == null) ? 0 : copyright.hashCode());
-		result = prime * result + ((header == null) ? 0 : header.hashCode());
+		result = prime * result + firstSong;
+		result = prime * result + numberOfSongs;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -80,7 +85,7 @@ public class GbsTag implements Comparable<GbsTag> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -95,10 +100,9 @@ public class GbsTag implements Comparable<GbsTag> {
 				return false;
 		} else if (!copyright.equals(other.copyright))
 			return false;
-		if (header == null) {
-			if (other.header != null)
-				return false;
-		} else if (!header.equals(other.header))
+		if (firstSong != other.firstSong)
+			return false;
+		if (numberOfSongs != other.numberOfSongs)
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -107,7 +111,6 @@ public class GbsTag implements Comparable<GbsTag> {
 			return false;
 		return true;
 	}
-	
 	@Override
 	public String toString() {
 		return "GbsTag [identifier=" + header + ", versionNumber=" + versionNumber + ", numberOfSongs=" + numberOfSongs

@@ -37,7 +37,7 @@ public class GbsFileReader {
 
 	public GbsTag getTags() {
 		Objects.requireNonNull(tags, "tags cannot be null!");
-		return this.tags;
+		return tags;
 	}
 
 	// Constructor

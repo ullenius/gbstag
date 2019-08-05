@@ -1,6 +1,12 @@
 package se.anosh.gbstag;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,140 +15,119 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.dao.GenericDao;
+import se.anosh.gbstag.domain.GbsTag;
 
 public class TestModelWithData {
-	
 	
     public TestModelWithData() {
 		super();
 	}
 
-	private SpcFileImplementation spcFile;
-    private Id666 id666;
+	private GbsFileImplementation gbsFile;
+    private GbsTag tag;
+    private static String SAMPLE_FILE = "gbs/sample.gbs"; // Shantae
+    private static String SECOND_SAMPLE = "gbs/sample2.gbs"; // DK Land2
     
     
     @Before
     public void setup() throws IOException {
         
-        spcFile = new SpcFileImplementation("spc/text.spc");
-        id666 = spcFile.read();
+        gbsFile = new GbsFileImplementation(SAMPLE_FILE);
+        tag = gbsFile.read();
     }
 	
-
-    @Test
-    /**
-     * SPC-files have a byte set to 26 or 27 if tags are present or not
-     */
-    public void testIfHeaderContainsTags() throws IOException {
-        assertTrue(id666.hasId666Tags());
-    }
-    
-    @Test
-    public void testIfHeaderDoesNotContainsTags() throws IOException {
-        
-        spcFile = new SpcFileImplementation("spc/containsNoTagSetToTrue.spc");
-        id666 = spcFile.read();
-        assertFalse(id666.hasId666Tags());
-    }
-    
-    @Test
-    public void testValidTextTagFormattedTags() throws IOException {
-        assertTrue(id666.isTextTagFormat());
-    }
-    
-    @Test
-    public void testIfTextTagsAreDetectedAsBinary() throws IOException {
-        assertFalse(id666.isBinaryTagFormat());
-        
-    }
-    
     @Test
     public void testIdenticalHashCodes() throws IOException {
-        SpcFileImplementation cloneFile = new SpcFileImplementation("spc/text.spc");
-        Id666 clone = cloneFile.read();
+        GbsFileImplementation cloneFile = new GbsFileImplementation(SAMPLE_FILE);
+        GbsTag clone = cloneFile.read();
         
-        assertNotSame(clone,id666); // don't cheat
-        assertEquals(id666.hashCode(),clone.hashCode());
+        System.out.println("tag = " + tag);
+        System.out.println("clone = " + clone);
+        
+        
+        assertNotSame(clone,tag); // don't cheat
+        assertEquals(tag.hashCode(),clone.hashCode());
     }
     
     @Test
     public void testNotIdenticalHashCodes() throws IOException {
         
-        SpcFileImplementation different = new SpcFileImplementation("spc/binary.spc");
-        Id666 differentId666 = different.read();
+        GbsFileImplementation different = new GbsFileImplementation(SECOND_SAMPLE);
+        GbsTag differentGbsTag = different.read();
         
-        assertNotSame(differentId666,id666); // object references
-        assertNotEquals(differentId666,id666); // while we're at it
-        assertNotEquals(differentId666.hashCode(),id666.hashCode());
+        assertNotSame(differentGbsTag,tag); // object references
+        assertNotEquals(differentGbsTag,tag); // while we're at it
+        assertNotEquals(differentGbsTag.hashCode(),tag.hashCode());
     }
-    
-    @Test
-    public void testEqualObjects() throws IOException {
-        
-        SpcFileImplementation cloneFile = new SpcFileImplementation("spc/text.spc");
-        Id666 clone = cloneFile.read();
-        
-        assertNotSame(clone,id666); // no cheating
-        assertEquals(clone.hashCode(),id666.hashCode()); // equal objects *MUST* have equals hashcodes
-        assertEquals(clone,id666);
-    }
-    
-    @Test
-    public void testNonEqualObjects() throws IOException {
-        
-         SpcFileImplementation cloneFile = new SpcFileImplementation("spc/binary.spc");
-         Id666 clone = cloneFile.read();
-         
-         assertNotEquals(clone,spcFile);
-    }
-    
-    @Test
-    public void testComparableSorting() throws IOException {
-        
-        SpcFileImplementation otherFile = new SpcFileImplementation("spc/binary.spc");
-        Id666 other = otherFile.read();
-        
-        List<Id666> myList = new ArrayList<>();
-        myList.add(other);
-        myList.add(id666);
-        myList.add(other);
-        myList.add(id666);
-        
-        myList.sort(null);
-        myList.forEach(System.out::println);
-        assertEquals(id666,myList.get(0));
-        assertEquals(id666,myList.get(1));
-        assertEquals(other,myList.get(2));
-        assertEquals(other,myList.get(3));
-        
-    }
-    
-    @Test
-    public void testComparableWithNullValues() throws IOException {
-        
-        GenericDao otherFile = new SpcFileImplementation("spc/binary.spc"); //accessing using the interface this time
-        Id666 other = otherFile.read();
-        
-        other.setGameTitle(null);
-        other.setSongTitle(null);
-        other.setArtist(null);
-        
-        id666.setGameTitle(null);
-        
-        List<Id666> myList = new ArrayList<>();
-        myList.add(id666);
-        myList.add(other);
-        
-        myList.sort(null);
-        
-        assertNull(myList.get(0).getSongTitle());
-        assertNull(myList.get(0).getGameTitle());
-        assertNull(myList.get(0).getArtist());
-        assertNull(myList.get(1).getGameTitle());
-        assertNotNull(myList.get(1).getArtist());
-        assertNotNull(myList.get(1).getSongTitle());
-    }
+//    
+//    @Test
+//    public void testEqualObjects() throws IOException {
+//        
+//        GbsFileImplementation cloneFile = new GbsFileImplementation(SAMPLE_FILE);
+//        GbsTag clone = cloneFile.read();
+//        
+//        assertNotSame(clone,header); // no cheating
+//        assertEquals(clone.hashCode(),header.hashCode()); // equal objects *MUST* have equals hashcodes
+//        assertEquals(clone,header);
+//    }
+//    
+//    @Test
+//    public void testNonEqualObjects() throws IOException {
+//        
+//         GbsFileImplementation cloneFile = new GbsFileImplementation(SAMPLE_FILE);
+//         GbsTag clone = cloneFile.read();
+//         
+//         assertNotEquals(clone,spcFile);
+//    }
+//    
+//    @Test
+//    public void testComparableSorting() throws IOException {
+//        
+//        GbsFileImplementation otherFile = new GbsFileImplementation(SAMPLE_FILE);
+//        GbsTag other = otherFile.read();
+//        
+//        List<GbsTag> myList = new ArrayList<>();
+//        myList.add(other);
+//        myList.add(header);
+//        myList.add(other);
+//        myList.add(header);
+//        
+//        myList.sort(null);
+//        myList.forEach(System.out::println);
+//        assertEquals(header,myList.get(0));
+//        assertEquals(header,myList.get(1));
+//        assertEquals(other,myList.get(2));
+//        assertEquals(other,myList.get(3));
+//        
+//    }
+//    
+//    @Test
+//    public void testComparableWithNullValues() throws IOException {
+//        
+//        GenericDao otherFile = new GbsFileImplementation("spc/binary.spc"); //accessing using the interface this time
+//        GbsTag other = otherFile.read();
+//        
+//        other.setGameTitle(null);
+//        other.setSongTitle(null);
+//        other.setArtist(null);
+//        
+//        header.setGameTitle(null);
+//        
+//        List<GbsTag> myList = new ArrayList<>();
+//        myList.add(header);
+//        myList.add(other);
+//        
+//        myList.sort(null);
+//        
+//        assertNull(myList.get(0).getSongTitle());
+//        assertNull(myList.get(0).getGameTitle());
+//        assertNull(myList.get(0).getArtist());
+//        assertNull(myList.get(1).getGameTitle());
+//        assertNotNull(myList.get(1).getArtist());
+//        assertNotNull(myList.get(1).getSongTitle());
+//    }
     
 	
 

@@ -26,7 +26,7 @@ public class TestGbsReading {
 	    @Before
 	    public void setup() throws IOException {
 	        
-	        gbsFile = new GbsFileImplementation("/tmp/zelda.gbs");
+	        gbsFile = new GbsFileImplementation("gbs/sample.gbs");
 	        tags = gbsFile.read();
 	    }
 		
@@ -34,6 +34,8 @@ public class TestGbsReading {
 	    public void TestOpenFile() {
 	    	
 	    	System.out.println(tags.toString());
+	    	System.out.println(tags.equals(tags));
+	    	System.out.println(tags.hashCode());
 	    	
 	    }
 	    
