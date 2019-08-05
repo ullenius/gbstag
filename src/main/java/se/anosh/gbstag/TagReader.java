@@ -89,7 +89,7 @@ public class TagReader {
                 
             } catch (IOException ex) {
                 System.out.println("I/O error");
-                //ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 System.exit(0);
             }
         } // end of for-each-loop
