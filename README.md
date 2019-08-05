@@ -1,4 +1,5 @@
 # gbstag : Java GBS tag reader (Game Boy Sound Files)
+<img src="gameboy.png" alt="Game Boy" align="right">
 
 [gbsTag](https://github.com/ullenius/gbstag) is a Java stand-alone command line
 app for reading the tags from Game Boy music files (GBS).
@@ -30,7 +31,6 @@ Total Songs	 : 28
 * :heavy_check_mark: Supports Latin-1 (ISO-8859-1) encoding in the tags!
 * :heavy_check_mark: Command line. Multi-platform.
 * :heavy_check_mark: Batch processing using wildcards is possible! E.g. `java -jar gbstag *.gbs`
-* :x: Edit tags (as of yet)
 
 ## Building
 This is a Maven-project.
@@ -62,3 +62,4 @@ GPL 3 only. See COPYING
 
 ### Libraries and copyright
 * Apache Commons CLI-library - Apache Licence version 2
+* Image by [Flappiefh](https://fr.wikipedia.org/wiki/Utilisateur:Flappiefh) (2013) from Wikimedia Commons. [Creative Commons Attribution-Share-Alike 3.0 Unported licence](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
