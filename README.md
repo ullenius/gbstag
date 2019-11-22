@@ -50,7 +50,7 @@ I've included a compiled jar-file with /lib dir to simplify for end-users who ca
 1. I wrote this because there was a lack of tools supporting the GBS-format.
 1. And it would be a fun project
 
-Heavily based on the SPCtag code (equivalent tool for SNES SPC-files).
+Heavily based on the [SPCtag](https://github.com/ullenius/spctag) code (equivalent tool for SNES SPC-files).
 
 Java is multi-platform and you can run and compile 20-year old Java programs without any issues. So I'd figure this would be a suitable platform for posterity.
 
