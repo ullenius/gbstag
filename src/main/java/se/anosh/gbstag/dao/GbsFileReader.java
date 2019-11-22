@@ -31,29 +31,22 @@ public class GbsFileReader {
 	public static final byte FIRST_SONG_OFFSET = 0x5;
 	
 	private static final String CORRECT_HEADER = "GBS";
+	private static final String READ_ONLY = "r";
 	
-	private GbsTag tags;
-	private Path file;
-	private RandomAccessFile raf;
-
-
-	public GbsTag getTags() {
-		Objects.requireNonNull(tags, "tags cannot be null!");
-		return tags;
-	}
+	private final GbsTag tags;
+	private final Path file;
+	private final RandomAccessFile raf;
 
 	// Constructor
 	public GbsFileReader(String filename) throws FileNotFoundException, IOException {
 
 		file = Paths.get(filename);
-		raf = new RandomAccessFile(file.toString(),"r");
+		raf = new RandomAccessFile(file.toString(),READ_ONLY);
 		tags = new GbsTag();
 		
 		if (!isValidGbsFile())
-			throw new IOException("File is missing correct GBS-header. Exiting");
-		
+			throw new IOException("File is missing correct GBS-header");
 		readAndSetAllFields();
-
 		raf.close();
 	}
 	
@@ -87,7 +80,6 @@ public class GbsFileReader {
 		tags.setFirstSong(readByte(FIRST_SONG_OFFSET));
 	}
 	
-	
 	private void readHeader() throws IOException {
 		tags.setHeader(readStuff(IDENTIFIER_OFFSET, IDENTIFIER_LENGTH).trim()); // removes NULL character
 	}
@@ -104,14 +96,17 @@ public class GbsFileReader {
 		tags.setCopyright(readStuff(COPYRIGHT_OFFSET, COPYRIGHT_LENGTH).trim());
 	}
 	
-	
 	private String readStuff(int offset, int length) throws IOException {
-		
-		return BinaryIO.readStuff(raf,offset,length);
+		return BinaryIO.readString(raf,offset,length);
 	}
 	
 	private byte readByte(int offset) throws IOException {
 		return BinaryIO.readByte(raf,offset);
+	}
+	
+	public GbsTag getTags() {
+		Objects.requireNonNull(tags, "tags cannot be null!");
+		return tags;
 	}
 
 }

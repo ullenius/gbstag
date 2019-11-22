@@ -28,9 +28,9 @@ Total Songs	 : 28
 
 ## Features
 * :heavy_check_mark: 100% Java (Java 8) :coffee:
-* :heavy_check_mark: Supports Latin-1 (ISO-8859-1) encoding in the tags!
+* :heavy_check_mark: Supports UTF-8 encoding in the tags!
 * :heavy_check_mark: Command line. Multi-platform.
-* :heavy_check_mark: Batch processing using wildcards is possible! E.g. `java -jar gbstag *.gbs`
+* :heavy_check_mark: Batch processing using wildcards is possible! For example: `java -jar gbstag *.gbs`
 
 ## Building
 This is a Maven-project.
@@ -39,7 +39,7 @@ Run:
 ```sh
 mvn clean install assembly:single
 ```
-to build the JAR-file.
+to build the JAR-file. Or run the build script provided: `build.sh`
 
 ## Binaries
 I've included a compiled jar-file with /lib dir to simplify for end-users who can't compile stuff on their platform.
@@ -56,6 +56,7 @@ Java is multi-platform and you can run and compile 20-year old Java programs wit
 
 ## Changelog
 * 0.1 - first release! August 2019
+* 0.2 - UTF-8 support (replacing latin-1) November 2019
 
 ## Licence
 GPL 3 only. See COPYING

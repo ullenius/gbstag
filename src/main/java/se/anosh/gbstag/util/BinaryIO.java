@@ -2,30 +2,28 @@ package se.anosh.gbstag.util;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Objects;
+import java.nio.charset.StandardCharsets;
 
+/*
+ * Helper class for low-level binary I/O
+ * Only static methods
+ */
 public final class BinaryIO {
-	
-	/*
-	 * Helper class for low-level binary I/O
-	 * Only static methods
-	 */
-	
+
 	private BinaryIO() {
-		throw new AssertionError("This should never happen"); // prevents instantiation
+		throw new AssertionError("This class cannot be instantiated");
 	}
-	
-	public static String readStuff(final RandomAccessFile raf, final int offset, final int length) throws IOException {
+
+	public static String readString(final RandomAccessFile raf, final int offset, final int length) throws IOException {
 		raf.seek(offset);
 		byte[] bytes = new byte[length];
 		raf.read(bytes);
-		return new String(bytes, "ISO-8859-1");
+		return new String(bytes, StandardCharsets.UTF_8);
 	}
-	
-	public static byte readByte(final RandomAccessFile raf, int offset) throws IOException {
+
+	public static byte readByte(final RandomAccessFile raf, final int offset) throws IOException {
 		raf.seek(offset);
-		byte result = raf.readByte();
-		return result;
+		return raf.readByte();
 	}
 
 }
