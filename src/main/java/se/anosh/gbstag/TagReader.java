@@ -14,7 +14,7 @@ import se.anosh.gbstag.service.GbsManager;
 import se.anosh.gbstag.service.GenericService;
 /**
  *
- * SPC tag 0.1
+ * GBS tag 0.2
  * 
  * Java command-line tool for reading the tags from Game Boy Sound (gbs) files.
  * 
@@ -22,11 +22,11 @@ import se.anosh.gbstag.service.GenericService;
  * from Gameboy and Gameboy Colour
  * 
  * @author Anosh D. Ullenius <anosh@anosh.se>
- * code written in August 2019. Based on spctool
+ * code written in 2019. Based on spctool
  */
 public class TagReader {
     
-    private static final String VERSION ="gbstag version 0.1";
+    private static final String VERSION ="gbstag version 0.2";
     private static final String ABOUT = "code by A. Ullenius 2019";
     private static final String LICENCE = "Licence: Gnu General Public License - version 3.0 only";
     
