@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Before;
@@ -18,16 +18,18 @@ import se.anosh.gbstag.dao.GbsDao;
 import se.anosh.gbstag.domain.GbsTag;
 
 public class TestModelWithData {
-	
-    public TestModelWithData() {
-		super();
-	}
 
-	private GbsFileImplementation gbsFile;
+    public TestModelWithData() {
+        super();
+    }
+
+    private GbsFileImplementation gbsFile;
     private GbsTag tag;
     private static final String FIRST_SAMPLE_FILE = "gbs/sample.gbs"; // Shantae
     private static final String SECOND_SAMPLE_FILE = "gbs/sample2.gbs"; // DK Land2
-    
+
+    private static final String GBS_HEADER = "GBS";
+
     @Before
     public void setup() throws IOException {
         gbsFile = new GbsFileImplementation(FIRST_SAMPLE_FILE);
@@ -39,8 +41,8 @@ public class TestModelWithData {
         GbsFileImplementation cloneFile = new GbsFileImplementation(FIRST_SAMPLE_FILE);
         GbsTag clone = cloneFile.read();
 
-        assertNotSame(clone,tag); // don't cheat
-        assertEquals(tag.hashCode(),clone.hashCode());
+        assertNotSame(clone, tag);
+        assertEquals(tag.hashCode(), clone.hashCode());
     }
 
     @Test
@@ -48,9 +50,9 @@ public class TestModelWithData {
         GbsFileImplementation different = new GbsFileImplementation(SECOND_SAMPLE_FILE);
         GbsTag differentGbsTag = different.read();
 
-        assertNotSame(differentGbsTag,tag); // object references
-        assertNotEquals(differentGbsTag,tag); // while we're at it
-        assertNotEquals(differentGbsTag.hashCode(),tag.hashCode());
+        assertNotSame(differentGbsTag, tag);
+        assertNotEquals(differentGbsTag, tag);
+        assertNotEquals(differentGbsTag.hashCode(), tag.hashCode());
     }
 
     @Test
@@ -58,48 +60,45 @@ public class TestModelWithData {
         GbsFileImplementation cloneFile = new GbsFileImplementation(FIRST_SAMPLE_FILE);
         GbsTag clone = cloneFile.read();
 
-        assertNotSame(clone,tag); // no cheating
-        assertEquals(clone.hashCode(),tag.hashCode()); // equal objects *MUST* have equals hashcodes
-        assertEquals(clone,tag);
+        assertNotSame(clone, tag);
+        assertEquals(clone.hashCode(), tag.hashCode());
+        assertEquals(clone, tag);
     }
 
     @Test
     public void testNonEqualObjects() throws IOException {
-         GbsFileImplementation other = new GbsFileImplementation(SECOND_SAMPLE_FILE);
-         GbsTag dkland = other.read();
-         assertNotEquals(dkland,tag);
+        GbsFileImplementation other = new GbsFileImplementation(SECOND_SAMPLE_FILE);
+        GbsTag dkland = other.read();
+        assertNotEquals(dkland, tag);
     }
 
     @Test
     public void testComparableSorting() throws IOException {
-        GbsFileImplementation otherFile = new GbsFileImplementation(SECOND_SAMPLE_FILE);
-        GbsTag other = otherFile.read();
+        final GbsFileImplementation otherFile = new GbsFileImplementation(SECOND_SAMPLE_FILE);
+        final GbsTag other = otherFile.read();
 
-        List<GbsTag> myList = new ArrayList<>();
-        myList.add(other);
-        myList.add(tag);
-        myList.add(other);
-        myList.add(tag);
+        final List<GbsTag> expected = List.of(other, other, tag, tag);
+        final List<GbsTag> actual = new LinkedList<>();
+        actual.add(other);
+        actual.add(tag);
+        actual.add(other);
+        actual.add(tag);
+        actual.sort(null);
 
-        myList.sort(null);
-        myList.forEach(System.out::println);
-        assertEquals(tag,myList.get(3));
-        assertEquals(tag,myList.get(2));
-        assertEquals(other,myList.get(1));
-        assertEquals(other,myList.get(0));
+        assertEquals(expected, actual);
     }
 
     @Test
     public void testComparableWithNullValues() throws IOException {
-        GbsDao otherFile = new GbsFileImplementation(SECOND_SAMPLE_FILE); //accessing using the interface this time
-        GbsTag other = otherFile.read();
+        final GbsDao otherFile = new GbsFileImplementation(SECOND_SAMPLE_FILE); //accessing using the interface this time
+        final GbsTag other = otherFile.read();
 
         other.setTitle(null);
         other.setAuthor(null);
         other.setCopyright(null);
         tag.setTitle(null);
 
-        List<GbsTag> myList = new ArrayList<>();
+        List<GbsTag> myList = new LinkedList<>();
         myList.add(tag);
         myList.add(other);
 
@@ -117,10 +116,10 @@ public class TestModelWithData {
     public void testFileWithValidHeader() {
         // first 3 bytes of string should equal "GBS"
         final String headerWithoutVersionNumber = tag.getHeader();
-        assertEquals("GBS", headerWithoutVersionNumber); // case sensitive
+        assertEquals(GBS_HEADER, headerWithoutVersionNumber); // case sensitive
     }
 
-    @Test(expected=IOException.class)
+    @Test(expected = IOException.class)
     public void testFileWithInvalidHeader() throws IOException {
         gbsFile = new GbsFileImplementation("gbs/randomBytes.gbs");
     }
