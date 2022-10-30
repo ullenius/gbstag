@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import se.anosh.gbstag.domain.GbsTag;
 
-public class GbsFileImplementation implements GenericDao<GbsTag> {
+public class GbsFileImplementation implements GbsDao {
 	
 	private final GbsFileReader gbsFile;
 
@@ -14,14 +14,6 @@ public class GbsFileImplementation implements GenericDao<GbsTag> {
 
 	public GbsTag read() throws IOException {
 		return gbsFile.getTags();
-	}
-
-	public void update(String song) {
-		throw new UnsupportedOperationException("not yet implemented");
-	}
-
-	public void remove() {
-		throw new UnsupportedOperationException("not yet implemented");
 	}
 
 }

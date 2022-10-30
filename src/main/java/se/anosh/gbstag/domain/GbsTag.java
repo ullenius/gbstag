@@ -16,7 +16,7 @@ public final class GbsTag implements Comparable<GbsTag> {
 	private String title;
 	private String copyright;
 	
-	private int numberOfSongs; //1-255 (1 byte) but since Java doesn't support unsigned values int is used
+	private int numberOfSongs; //1-255 (1 unsigned byte)
 	private int firstSong;
 	private byte versionNumber;  // doesn't matter
 	
