@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import se.anosh.gbstag.domain.GbsTag;
 
-public class GbsFileImplementation implements GbsDao {
+public final class GbsFileImplementation implements GbsDao {
 	
 	private final GbsFileReader gbsFile;
 

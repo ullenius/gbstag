@@ -23,7 +23,7 @@ import se.anosh.gbstag.service.GbsService;
  * @author Anosh D. Ullenius <anosh@anosh.se>
  * code written in 2019. Based on spctool
  */
-public class TagReader {
+public final class TagReader {
     
     private static final String VERSION ="gbstag version 0.2.2";
     private static final String ABOUT = "code by A. Ullenius 2019";

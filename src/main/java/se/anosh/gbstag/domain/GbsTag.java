@@ -112,8 +112,8 @@ public final class GbsTag implements Comparable<GbsTag> {
 	}
 	
 	@Override
-	public int compareTo(GbsTag arg0) {
-		return gbsComparator.compare(this, arg0);
+	public int compareTo(GbsTag arg) {
+		return gbsComparator.compare(this, arg);
 	}
 	
 }
