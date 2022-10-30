@@ -2,11 +2,7 @@ package se.anosh.gbstag.domain;
 
 import java.util.Comparator;
 
-/* Domain class for GBS-files 
- * 
- */
-
-public class GbsTag implements Comparable<GbsTag> {
+public final class GbsTag implements Comparable<GbsTag> {
 	
 	// Thanks to Lukasz Wiktor @ stack overflow (2014)
     private static final Comparator<String> nullSafeStringComparator = Comparator.nullsFirst(String::compareToIgnoreCase);
@@ -66,10 +62,7 @@ public class GbsTag implements Comparable<GbsTag> {
 	public void setCopyright(String copyright) {
 		this.copyright = copyright;
 	}
-	
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,7 +113,6 @@ public class GbsTag implements Comparable<GbsTag> {
 	
 	@Override
 	public int compareTo(GbsTag arg0) {
-		
 		return gbsComparator.compare(this, arg0);
 	}
 	

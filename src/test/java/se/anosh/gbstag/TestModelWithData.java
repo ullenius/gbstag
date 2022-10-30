@@ -25,12 +25,11 @@ public class TestModelWithData {
 
 	private GbsFileImplementation gbsFile;
     private GbsTag tag;
-    private static String FIRST_SAMPLE_FILE = "gbs/sample.gbs"; // Shantae
-    private static String SECOND_SAMPLE_FILE = "gbs/sample2.gbs"; // DK Land2
+    private static final String FIRST_SAMPLE_FILE = "gbs/sample.gbs"; // Shantae
+    private static final String SECOND_SAMPLE_FILE = "gbs/sample2.gbs"; // DK Land2
     
     @Before
     public void setup() throws IOException {
-        
         gbsFile = new GbsFileImplementation(FIRST_SAMPLE_FILE);
         tag = gbsFile.read();
     }
@@ -39,10 +38,6 @@ public class TestModelWithData {
     public void testIdenticalHashCodes() throws IOException {
         GbsFileImplementation cloneFile = new GbsFileImplementation(FIRST_SAMPLE_FILE);
         GbsTag clone = cloneFile.read();
-        
-        System.out.println("tag = " + tag);
-        System.out.println("clone = " + clone);
-        
         
         assertNotSame(clone,tag); // don't cheat
         assertEquals(tag.hashCode(),clone.hashCode());
@@ -139,7 +134,5 @@ public class TestModelWithData {
         gbsFile = new GbsFileImplementation("gbs/randomBytes.gbs"); // will throw exception
         
     }
-    
-	
 
 }

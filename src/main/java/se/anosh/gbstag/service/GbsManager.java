@@ -1,6 +1,5 @@
 package se.anosh.gbstag.service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -9,7 +8,7 @@ import se.anosh.gbstag.domain.GbsTag;
 
 public class GbsManager implements GenericService<GbsTag> {
 	
-	private GenericDao<GbsTag> dao;
+	private final GenericDao<GbsTag> dao;
 	
 	// dependency injection
 	public GbsManager(GenericDao<GbsTag> dao) {
@@ -17,8 +16,7 @@ public class GbsManager implements GenericService<GbsTag> {
 	}
 
 	@Override
-	public GbsTag read() throws FileNotFoundException, IOException {
-		
+	public GbsTag read() throws IOException {
 		return dao.read();
 	}
 
@@ -30,7 +28,6 @@ public class GbsManager implements GenericService<GbsTag> {
 	@Override
 	public void update(String song) {
 		dao.update(song);
-		
 	}
 
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
 import se.anosh.gbstag.domain.GbsTag;
 import se.anosh.gbstag.util.BinaryIO;
 
-public class GbsFileReader {
+public final class GbsFileReader {
 	
 	// Includes identifier string and version number
 	public static final int IDENTIFIER_OFFSET = 0;
@@ -24,7 +24,6 @@ public class GbsFileReader {
 	
 	public static final int COPYRIGHT_OFFSET = 0x50;
 	public static final int COPYRIGHT_LENGTH = 32;
-	
 
 	public static final byte VERSION_NUMBER_OFFSET = 0x3;
 	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
@@ -38,8 +37,7 @@ public class GbsFileReader {
 	private final RandomAccessFile raf;
 
 	// Constructor
-	public GbsFileReader(String filename) throws FileNotFoundException, IOException {
-
+	public GbsFileReader(String filename) throws IOException {
 		file = Paths.get(filename);
 		raf = new RandomAccessFile(file.toString(),READ_ONLY);
 		tags = new GbsTag();
