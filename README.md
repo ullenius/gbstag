@@ -27,7 +27,7 @@ Total Songs	 : 28
 ```
 
 ## Features
-* :heavy_check_mark: 100% Java (Java 8) :coffee:
+* :heavy_check_mark: 100% Java (Java 11) :coffee:
 * :heavy_check_mark: Supports UTF-8 encoding in the tags!
 * :heavy_check_mark: Command line. Multi-platform.
 * :heavy_check_mark: Batch processing using wildcards is possible! For example: `java -jar gbstag *.gbs`

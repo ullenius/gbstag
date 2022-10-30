@@ -6,7 +6,7 @@ import java.util.Objects;
 import se.anosh.gbstag.dao.GbsDao;
 import se.anosh.gbstag.domain.GbsTag;
 
-public final class GbsManager implements GbsService {
+final class GbsManager implements GbsService {
 	
 	private final GbsDao dao;
 	

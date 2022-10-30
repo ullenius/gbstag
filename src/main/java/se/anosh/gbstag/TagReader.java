@@ -8,9 +8,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import se.anosh.gbstag.dao.GbsFileImplementation;
 import se.anosh.gbstag.domain.GbsTag;
-import se.anosh.gbstag.service.GbsManager;
+import se.anosh.gbstag.service.GbsFactory;
 import se.anosh.gbstag.service.GbsService;
 
 /**
@@ -30,8 +29,7 @@ public final class TagReader {
     private static final String LICENCE = "Licence: GNU General Public License - version 3.0 only";
     
     public static void main(String[] args) {
-        
-        Options options = new Options();
+        final Options options = new Options();
         options.addOption("v", "verbose", false, "verbose output");
         options.addOption("V", "version", false, "print version");
         
@@ -39,13 +37,10 @@ public final class TagReader {
         HelpFormatter formatter = new HelpFormatter();
         try {
             CommandLine cmd = parser.parse(options, args);
-            
             if (cmd.hasOption("V"))
                 printVersionAndCreditsAndExit();
-            
             if (cmd.getArgList().isEmpty())
                     throw new ParseException("No arguments");
-            
             TagReader demo = new TagReader();
             demo.go(cmd);
         } catch (ParseException ex) {
@@ -61,28 +56,29 @@ public final class TagReader {
         System.exit(0);
     }
     
-    public void go(final CommandLine cmd)  {
+    private void go(final CommandLine cmd)  {
         String[] fileNames = cmd.getArgs();
         for (String file : fileNames) {
             try {
-            	GbsService service = new GbsManager(new GbsFileImplementation(file));
-            	GbsTag myFile = service.read();
-            	
-            	if (cmd.hasOption("v")) { // verbose output
-            		System.out.println("Identifier\t : " + myFile.getHeader());
-            		System.out.println("Version Number\t : " + myFile.getVersionNumber());
-            	}
-            	System.out.println("Title\t\t : " + myFile.getTitle());
-                System.out.println("Artist(s)\t : " + myFile.getAuthor()); // composers, named 'Author' in the GBS-spec
-                System.out.println("Copyright\t : " + myFile.getCopyright());
-                System.out.println("Total Songs\t : " + myFile.getNumberOfSongs());
-                System.out.println("First Song\t : " + myFile.getFirstSong());
+                GbsService service = GbsFactory.of(file);
+                readTags(service.read(), cmd);
             } catch (IOException ex) {
                 System.out.println("I/O error");
                 System.out.println(ex.getMessage());
                 System.exit(0);
             }
-        } // end of for-each-loop
+        }
+    }
+    private void readTags(GbsTag myFile, CommandLine cmd) {
+        if (cmd.hasOption("v")) { // verbose output
+            System.out.println("Identifier\t : " + myFile.getHeader());
+            System.out.println("Version Number\t : " + myFile.getVersionNumber());
+        }
+        System.out.println("Title\t\t : " + myFile.getTitle());
+        System.out.println("Artist(s)\t : " + myFile.getAuthor()); // composers, named 'Author' in the GBS-spec
+        System.out.println("Copyright\t : " + myFile.getCopyright());
+        System.out.println("Total Songs\t : " + myFile.getNumberOfSongs());
+        System.out.println("First Song\t : " + myFile.getFirstSong());
     }
     
 }

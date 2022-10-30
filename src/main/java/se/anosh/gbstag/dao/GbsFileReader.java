@@ -9,7 +9,7 @@ import java.util.Objects;
 import se.anosh.gbstag.domain.GbsTag;
 import se.anosh.gbstag.util.BinaryIO;
 
-public final class GbsFileReader {
+final class GbsFileReader {
 	
 	// Includes identifier string and version number
 	public static final int IDENTIFIER_OFFSET = 0;

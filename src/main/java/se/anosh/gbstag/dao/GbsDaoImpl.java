@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import se.anosh.gbstag.domain.GbsTag;
 
-public final class GbsFileImplementation implements GbsDao {
+public final class GbsDaoImpl implements GbsDao {
 	
 	private final GbsFileReader gbsFile;
 
-	public GbsFileImplementation(String filename) throws IOException {
+	public GbsDaoImpl(String filename) throws IOException {
 		gbsFile = new GbsFileReader(filename);
 	}
 
