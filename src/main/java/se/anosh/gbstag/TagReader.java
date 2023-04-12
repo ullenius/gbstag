@@ -8,9 +8,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import se.anosh.gbstag.dao.GbsFileReader;
 import se.anosh.gbstag.domain.GbsTag;
-import se.anosh.gbstag.service.GbsFactory;
-import se.anosh.gbstag.service.GbsService;
 
 /**
  *
@@ -24,7 +23,7 @@ import se.anosh.gbstag.service.GbsService;
  */
 public final class TagReader {
     
-    private static final String VERSION ="gbstag version 0.2.2";
+    private static final String VERSION ="gbstag version 0.2.3";
     private static final String ABOUT = "code by A. Ullenius 2019";
     private static final String LICENCE = "Licence: GNU General Public License - version 3.0 only";
     
@@ -37,10 +36,12 @@ public final class TagReader {
         HelpFormatter formatter = new HelpFormatter();
         try {
             CommandLine cmd = parser.parse(options, args);
-            if (cmd.hasOption("V"))
+            if (cmd.hasOption("V")) {
                 printVersionAndCreditsAndExit();
-            if (cmd.getArgList().isEmpty())
-                    throw new ParseException("No arguments");
+            }
+            if (cmd.getArgList().isEmpty()) {
+                throw new ParseException("No arguments");
+            }
             TagReader demo = new TagReader();
             demo.go(cmd);
         } catch (ParseException ex) {
@@ -60,8 +61,8 @@ public final class TagReader {
         String[] fileNames = cmd.getArgs();
         for (String file : fileNames) {
             try {
-                GbsService service = GbsFactory.of(file);
-                readTags(service.read(), cmd);
+                GbsFileReader fileReader = new GbsFileReader(file);
+                readTags(fileReader.getTags(), cmd);
             } catch (IOException ex) {
                 System.out.println("I/O error");
                 System.out.println(ex.getMessage());

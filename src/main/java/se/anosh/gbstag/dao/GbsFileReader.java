@@ -9,7 +9,7 @@ import java.util.Objects;
 import se.anosh.gbstag.domain.GbsTag;
 import se.anosh.gbstag.util.BinaryIO;
 
-final class GbsFileReader {
+public final class GbsFileReader {
 	
 	// Includes identifier string and version number
 	public static final int IDENTIFIER_OFFSET = 0;
@@ -38,7 +38,7 @@ final class GbsFileReader {
 	// Constructor
 	public GbsFileReader(String filename) throws IOException {
 		file = Paths.get(filename);
-		raf = new RandomAccessFile(file.toString(),READ_ONLY);
+		raf = new RandomAccessFile(file.toString(),READ_ONLY); // FIXME try-with-resources
 		tags = new GbsTag();
 
 		if (!isValidGbsFile())
