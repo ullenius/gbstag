@@ -23,7 +23,7 @@ import se.anosh.gbstag.domain.GbsTag;
  */
 public final class TagReader {
     
-    private static final String VERSION ="gbstag version 0.2.3";
+    private static final String VERSION ="gbstag version 0.2.4";
     private static final String ABOUT = "code by A. Ullenius 2019";
     private static final String LICENCE = "Licence: GNU General Public License - version 3.0 only";
     
@@ -46,7 +46,7 @@ public final class TagReader {
             demo.go(cmd);
         } catch (ParseException ex) {
             formatter.printHelp("gbs <filename>", options);
-            System.exit(0);
+            System.exit(-1);
         }
     }
     
@@ -66,7 +66,7 @@ public final class TagReader {
             } catch (IOException ex) {
                 System.out.println("I/O error");
                 System.out.println(ex.getMessage());
-                System.exit(0);
+                System.exit(-1);
             }
         }
     }
