@@ -13,7 +13,7 @@ public final class GbsFileReader {
 	
 	// Includes identifier string and version number
 	public static final int IDENTIFIER_OFFSET = 0;
-	public static final int IDENTIFIER_LENGTH = 0x3;
+	public static final int IDENTIFIER_LENGTH = 0x03;
 
 	public static final int TITLE_OFFSET = 0x10;
 	public static final int TITLE_LENGTH = 32;
@@ -24,25 +24,25 @@ public final class GbsFileReader {
 	public static final int COPYRIGHT_OFFSET = 0x50;
 	public static final int COPYRIGHT_LENGTH = 32;
 
-	public static final byte VERSION_NUMBER_OFFSET = 0x3;
-	public static final byte NUMBER_OF_SONGS_OFFSET = 0x4;
-	public static final byte FIRST_SONG_OFFSET = 0x5;
+	public static final byte VERSION_NUMBER_OFFSET = 0x03;
+	public static final byte NUMBER_OF_SONGS_OFFSET = 0x04;
+	public static final byte FIRST_SONG_OFFSET = 0x05;
 	
 	private static final String CORRECT_HEADER = "GBS";
 	private static final String READ_ONLY = "r";
 	
 	private final GbsTag tags;
-	private final Path file;
 	private final RandomAccessFile raf;
 
 	// Constructor
 	public GbsFileReader(String filename) throws IOException {
-		file = Paths.get(filename);
+		Path file = Paths.get(filename);
 		raf = new RandomAccessFile(file.toString(),READ_ONLY); // FIXME try-with-resources
 		tags = new GbsTag();
 
-		if (!isValidGbsFile())
+		if (!isValidGbsFile()) {
 			throw new IOException("File is missing correct GBS-header");
+		}
 		readAndSetAllFields();
 		raf.close();
 	}

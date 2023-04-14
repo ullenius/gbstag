@@ -16,8 +16,8 @@ public final class GbsTag implements Comparable<GbsTag> {
 	private String title;
 	private String copyright;
 	
-	private int numberOfSongs; //1-255 (1 unsigned byte)
-	private int firstSong;
+	private byte numberOfSongs; //1-255 (1 unsigned byte)
+	private byte firstSong; //1-255 (1 unsigned byte)
 	private byte versionNumber;  // doesn't matter
 	
 	public byte getVersionNumber() {
@@ -27,16 +27,16 @@ public final class GbsTag implements Comparable<GbsTag> {
 		this.versionNumber = versionNumber;
 	}
 	public int getNumberOfSongs() {
-		return numberOfSongs;
+		return Byte.toUnsignedInt(numberOfSongs);
 	}
 	public void setNumberOfSongs(int numberOfSongs) {
-		this.numberOfSongs = numberOfSongs & 0xFF; // leaves only the least significant byte
+		this.numberOfSongs = (byte) numberOfSongs; // leaves only the least significant byte
 	}
 	public int getFirstSong() {
-		return firstSong;
+		return Byte.toUnsignedInt(firstSong);
 	}
 	public void setFirstSong(int firstSong) {
-		this.firstSong = firstSong & 0xFF;
+		this.firstSong = (byte) firstSong;
 	}
 	public String getHeader() {
 		return header;
@@ -98,16 +98,15 @@ public final class GbsTag implements Comparable<GbsTag> {
 		if (numberOfSongs != other.numberOfSongs)
 			return false;
 		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+			return other.title == null;
+		} else {
+			return title.equals(other.title);
+		}
 	}
 	@Override
 	public String toString() {
-		return "GbsTag [identifier=" + header + ", versionNumber=" + versionNumber + ", numberOfSongs=" + numberOfSongs
-				+ ", firstSong=" + firstSong + ", title=" + title + ", author=" + author + ", copyright=" + copyright
+		return "GbsTag [identifier=" + header + ", versionNumber=" + versionNumber + ", numberOfSongs=" + Byte.toUnsignedInt(numberOfSongs)
+				+ ", firstSong=" + Byte.toUnsignedInt(firstSong) + ", title=" + title + ", author=" + author + ", copyright=" + copyright
 				+ "]";
 	}
 	

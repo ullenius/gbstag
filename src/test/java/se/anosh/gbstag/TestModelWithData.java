@@ -122,4 +122,24 @@ public class TestModelWithData {
         GbsFileReader filereader = new GbsFileReader("gbs/randomBytes.gbs");
     }
 
+    @Test
+    public void firstSongUnsigned() {
+        final int expected = Byte.MAX_VALUE + 1;
+        GbsTag tag = new GbsTag();
+        tag.setFirstSong(expected);
+
+        assertEquals(expected, tag.getFirstSong());
+    }
+
+    @Test
+    public void numberOfSongsUnsigned() {
+        final int expected = (1 << 8) - 1;
+        GbsTag tag = new GbsTag();
+        tag.setNumberOfSongs(expected);
+
+        assertEquals(expected, tag.getNumberOfSongs());
+    }
+
+
+
 }
